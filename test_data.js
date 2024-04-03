@@ -102,7 +102,6 @@ svg:
 `,
 expected:
 `CANVAS_DIMENSIONS, 16,
-FILL_RULE_EVENODD,
 R_H_LINE_TO, 1,
 R_H_LINE_TO, 2,
 R_H_LINE_TO, 4,
