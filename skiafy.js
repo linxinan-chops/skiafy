@@ -139,7 +139,7 @@ function HandleNode(svgNode, scaleX, scaleY, translateX, translateY, preserveFil
         // of the form <path fill="none" d="M0 0h24v24H0z"/>, so we skip.
         if (svgElement.getAttribute('fill') == 'none')
           break;
-
+        // handle fill-rule.
         var commands = [];
         var path = svgElement.getAttribute('d').replace(/,/g, ' ').trim();
         if (path.slice(-1).toLowerCase() !== 'z')
