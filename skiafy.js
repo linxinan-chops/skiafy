@@ -139,7 +139,12 @@ function HandleNode(svgNode, scaleX, scaleY, translateX, translateY, preserveFil
         // of the form <path fill="none" d="M0 0h24v24H0z"/>, so we skip.
         if (svgElement.getAttribute('fill') == 'none')
           break;
-
+        // Default SVG fill rule is Nonzero, but in Skia it is evenodd.
+        // So explicitly set FILL_RULE_NONZERO for all new paths, unless
+        // it has configured evenodd fill rule.
+        if (svgElement.getAttribute('fill-rule') != 'evenodd') {
+          output += 'FILL_RULE_NONZERO,\n';
+        }
         var commands = [];
         var path = svgElement.getAttribute('d').replace(/,/g, ' ').trim();
         if (path.slice(-1).toLowerCase() !== 'z')
